@@ -1,0 +1,6 @@
+fileignoreconfig:
+- filename: package-lock.json
+  checksum: 062b7cb49dd9038d6847c513763818aca2bd5b9a9a3a576e87af745dce39f268
+- filename: components/Places/PlacesList.js
+  checksum: c3b763e604ea8f18727213d29e8293724a5e130f54b17f02ec3953f984f4df93
+version: ""

@@ -1,16 +1,19 @@
-import { View, Button, Alert } from "react-native";
+import { View, Button, Alert, Image, Text, StyleSheet } from "react-native";
 import {
   launchCameraAsync,
   useCameraPermissions,
   PermissionStatus,
 } from "expo-image-picker";
+import { useState } from "react";
+import { Colors } from "../../constants/Colors";
+import OutlineButton from "../UI/OutlineButton";
 
 function ImagePicker() {
+  const [image, setImage] = useState(null);
   const [cameraPermissionInformation, requestPermission] =
     useCameraPermissions();
 
   async function imageHandler() {
-
     const hasPermission = await verifyPermission();
 
     if (!hasPermission) {
@@ -41,14 +44,37 @@ function ImagePicker() {
       aspect: [16, 9],
       quality: 0.5,
     });
-    console.log("image ", image);
+    setImage(image.uri);
   }
+
+  let imagePreview = <Text>No image taken yet</Text>;
+
+  if (image) {
+    imagePreview = <Image style={styles.image} src={{ uri: image }} />;
+  }
+
   return (
     <View>
-      <View></View>
-      <Button title="Take photo" onPress={imageHandler} />
+      <View style={styles.imagePreview}>{imagePreview}</View>
+      <OutlineButton icon="camera" onPress={imageHandler} >Take photo</OutlineButton>
     </View>
   );
 }
 
 export default ImagePicker;
+
+const styles = StyleSheet.create({
+    imagePreview: {
+        width: '100%',
+        height: 200,
+        marginVertical: 8,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: Colors.primary100,
+        borderRadius: 4
+    },
+    image: {
+        width: '100%',
+        height: '100%'
+    }
+})

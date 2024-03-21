@@ -6,7 +6,7 @@ import {
   useForegroundPermissions,
   PermissionStatus,
 } from "expo-location";
-function LocationPicker() {
+function LocationPicker({onLocationPicked}) {
   const [locationPermissionInformation, requestPermission] =
     useForegroundPermissions();
   async function verifyPermissions() {
@@ -33,7 +33,7 @@ function LocationPicker() {
     if (!hasPermission) return;
 
     const userLocation = await getCurrentPositionAsync();
-    console.log("userLocation == ", userLocation);
+    onLocationPicked(userLocation)
   }
 
   function pickOnMap() {}

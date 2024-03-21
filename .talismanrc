@@ -4,3 +4,8 @@ fileignoreconfig:
 - filename: components/Places/PlacesList.js
   checksum: c3b763e604ea8f18727213d29e8293724a5e130f54b17f02ec3953f984f4df93
 version: ""
+
+fileignoreconfig:
+- filename: package-lock.json
+  checksum: d9e865ff5eb53b611ab973c6d3d75cc1579918cfe606a4917247503843d757e7
+version: ""
